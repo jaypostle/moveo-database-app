@@ -7,7 +7,7 @@ export function Header(props) {
 
     return (
         <header className="App-header">
-            <h1><Link to='/'>Jayson's Sick Movie App</Link></h1>
+            <h1><Link to='/'>Jayson's Movie App</Link></h1>
             <NavMain />
         </header>
 

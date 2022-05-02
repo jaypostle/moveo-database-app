@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 import noPoster from '../images/no-movie-poster.jpg'
-import placeholder from '../images/godzilla-vs-kong-demo-poster.jpg';
+import { format } from "date-fns";
 
 
 function MovieCard( { movie }) {
 
-  // const date = new Date("2022-02-17")
-  const formattedDate = new Date(movie.release_date);
-  const date = toDateString(formattedDate);
-  console.log(date);
-  
+
+  // Convert Date
+  const date = new Date(movie.release_date);
+  const formattedDate = format(date, "MMMM do, yyyy");
+
+  // Convert Percent
+  const rating = parseFloat(movie.vote_average).toFixed(0);
+  const ratingPercent = `${(rating / 10 * 100)}%`;
+
   return (
     <div className="movie-card">
         <div className="movie-poster">
@@ -17,13 +21,12 @@ function MovieCard( { movie }) {
         </div>
         <div className="movie-info">
             <h3>{movie.title}</h3>
-            <p>{movie.release_date}</p>
-            {/* <p>{formattedDate}</p> */}
+            <p>{formattedDate}</p>
             <p>{movie.overview}</p>
-            <p><span>{movie.vote_average}</span></p>
             <span>info button</span>
             <Link to={`/movie/${movie.id}`}>More Info</Link>
-            <span>{movie.vote_average}</span>
+            <span>{ratingPercent}</span>
+            
         </div>
     </div>
   )

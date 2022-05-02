@@ -17,7 +17,7 @@ function PageSingleMovie() {
 
       const data = await res.json();
       setMovieData(data);
-      console.log(data);
+      // console.log(data);
     }
     fetchMovie();
 
@@ -25,7 +25,8 @@ function PageSingleMovie() {
 
   return (
     <section className="single-movie-container">
-        <SingleMovie movie={movieData} />
+      {/* don't load singlemovie if moviedata is false! */}
+{movieData !== false && <SingleMovie movie={movieData} />}
     </section>
   )
 }
