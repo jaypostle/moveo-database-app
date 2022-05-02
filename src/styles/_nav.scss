@@ -1,0 +1,57 @@
+nav {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+    }
+    li {
+        flex: 1;
+        margin-right: em(4);
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+    a {
+        display: block;
+        text-align: center;
+        line-height: em(40);
+        text-decoration: none;
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: rgba(white, 0.3);
+        }
+    }
+}
+
+.nav-main {
+    li {
+        background-color: $featureColor;
+    }
+
+    a {
+        &.active {
+            background-color: darken($featureColor, 10);
+        }
+    }
+
+    @include mq($tablet){
+        a {
+            padding: 0 em(20)
+        }
+    }
+    
+}
+
+.nav-sort {
+    li {
+        background-color: $highlightColor;
+    }
+    a {
+        font-size: 0.9em;
+        &.active {
+            background-color: darken($highlightColor, 8);
+        }
+    }
+}

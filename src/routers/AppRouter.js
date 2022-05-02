@@ -12,14 +12,20 @@ import Footer from '../components/Footer';
 function AppRouter() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Header />New
+      <div className="wrapper">
+        <Header />
          <main>
            <Routes>
-            <Route path='/' element={<PageHome />} />
-            <Route path='/about' element={<PageAbout />} />
-            <Route path='/favs' element={<PageFavs />} />
-            <Route path='/movie' element={<PageSingleMovie />} />
+             {/* default sort is popular */}
+              <Route path='/' element={<PageHome sort="popular"/>}/>
+              {/* pass props for sort */}
+              <Route path='/sort/popular' element={<PageHome sort="popular" />}/>
+              <Route path='/sort/top-rated' element={<PageHome sort="top_rated"/>}/>
+              <Route path='/sort/now-playing' element={<PageHome sort="now_playing" />}/>
+              <Route path='/sort/upcoming' element={<PageHome  sort="upcoming"/>}/>
+              <Route path='/movie/:id' element={<PageSingleMovie />}/>
+              <Route path='/about' element={<PageAbout />} />
+              <Route path='/favs' element={<PageFavs />} />
            </Routes>
          </main>
         <Footer />
