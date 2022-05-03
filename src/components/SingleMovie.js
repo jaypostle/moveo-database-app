@@ -1,5 +1,7 @@
 import noPoster from '../images/no-movie-poster.jpg';
 import { format } from "date-fns";
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 function SingleMovie( { movie }) {
@@ -10,6 +12,10 @@ function SingleMovie( { movie }) {
   // Convert Percent
   const rating = parseFloat(movie.vote_average).toFixed(0);
   const ratingPercent = `${(rating / 10 * 100)}%`;
+  // Convert Runtime
+  let runtimeHours   =   Math.floor(movie.runtime / 60);
+  let runtimeMinutes =   movie.runtime % 60;
+
 
   return (
     <>
@@ -30,11 +36,35 @@ function SingleMovie( { movie }) {
         {/* <img src={noPoster} alt='no poster available' /> */}
         <article>
             <h2>{movie.title}</h2>
-            <p>Genre | Run Time: 1h 10m</p>
+            <p>{movie.genres.map(genreList => <span key={genreList.id}>{genreList.name} | </span>)} Run Time: {runtimeHours}h {runtimeMinutes}m</p>
             <p>Release Date: {formattedDate}</p>
             <span>{ratingPercent}</span>
             <h3>Overview</h3>
             <p>{movie.overview}</p>
+        {/* put this in */}
+            <p>Director Producer</p>
+        </article>
+        <article>
+        {/* put this in */}
+            <div className="single-movie-media"></div>
+        </article>
+        <article>
+        {/* put this in */}
+            <div className="single-movie-cast">
+            {movie.credits.cast.map(actor => 
+                <div key={actor.id} className="single-movie-actor">
+                    {/* insert the photo here */}
+                    <p>{actor.name}</p>
+                    <p>{actor.character}</p>
+                </div>
+            )}
+            </div>
+        </article>
+        <article>
+        {/* put this in */}
+            <div className="single-movie-trailer">
+
+            </div>
         </article>
       </div>
     </>
