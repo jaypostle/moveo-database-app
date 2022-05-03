@@ -16,6 +16,17 @@ function SingleMovie( { movie }) {
   let runtimeHours   =   Math.floor(movie.runtime / 60);
   let runtimeMinutes =   movie.runtime % 60;
 
+  // youtube trailer
+  const youtubeTrailer = movie.videos.results.find( ({type}) => 
+    type === "Trailer"
+    );
+
+    // && site === "Youtube"
+    console.log(youtubeTrailer);
+
+
+
+
 
   return (
     <>
@@ -66,6 +77,9 @@ function SingleMovie( { movie }) {
         </article>
         <article>
         {/* put this in */}
+
+
+
             <div className="single-movie-media">
                 {movie.images.posters.slice(0, 6).map(poster =>
                     <img 
@@ -74,17 +88,21 @@ function SingleMovie( { movie }) {
                 )}
             </div>
         </article>
-        <article> 
-        {/* put this in */}
-            <div className="single-movie-trailer">
-                {/* use find to get where type = trailer and youtube */}
-            {/* <iframe width="1280" height="720" src={`https://www.youtube.com/embed/${movie.videos.results[0].key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-
-            </iframe> */}
-                
-            </div>
-        </article>
+       
       </div>
+      <article> 
+        {/* put this in */}
+
+        
+            
+            {youtubeTrailer.key !== false && 
+            <div className="single-movie-trailer">
+                <iframe width="640" height="360" src={`https://www.youtube.com/embed/${youtubeTrailer.key}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
+                </iframe>
+            </div>
+            }
+            
+        </article>
     </>
     )
 }
