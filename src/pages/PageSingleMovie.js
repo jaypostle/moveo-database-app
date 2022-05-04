@@ -15,6 +15,8 @@ function PageSingleMovie() {
       const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=videos,images,credits
       `);
 
+      //  IF I USE PROVIDERS, make sure to attribute source as JustWatch data (/get-movie-watch-providers)
+
       
       // const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=b88e3f6d75617b57568ea1668aa6b559&language=en-US
       // `);

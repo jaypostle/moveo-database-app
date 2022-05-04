@@ -14,6 +14,7 @@ function MovieCard( { movie }) {
   const rating = parseFloat(movie.vote_average).toFixed(0);
   const ratingPercent = `${(rating / 10 * 100)}%`;
 
+
   return (
     <div className="movie-card">
         <div className="movie-poster">
