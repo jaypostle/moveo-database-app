@@ -1,12 +1,34 @@
 import noPoster from '../images/no-movie-poster.jpg';
 import { format } from "date-fns";
-import { useState } from 'react';
-import { useEffect } from 'react';
+// import { useState } from 'react';
+// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { API_KEY } from '../globals/globals';
+import { useEffect, useState } from "react";
+
 
 
 
 function SingleMovie( { movie }) {
+
+    const [movieProviderData, setMovieProviderData] = useState(false);
+
+    // get movie provider info
+//   useEffect(() => {
+//     const fetchMovieProvider = async () => {
+//       const res = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/watch/providers?api_key=${API_KEY}
+//       `);
+
+//       const providerData = await res.json();
+//       setMovieProviderData(providerData);
+//       console.log(providerData);
+//     }
+//     fetchMovieProvider();
+
+//   }, [])
+
+
+
 
   // Convert Date
   let date = new Date(movie.release_date);
@@ -23,11 +45,7 @@ function SingleMovie( { movie }) {
     type === "Trailer" && site === "YouTube"
     );
 
-    console.log(movie)
-
   // Providers Filter
-//  IF I USE PROVIDERS, make sure to attribute source as JustWatch data (/get-movie-watch-providers)
-
 //   const availableProviders = movie.results.CA.flatrate.filter(
 //     provider => provider.provider_name.includes('Crave', 'Amazon Video', 'Netflix', 'Disney')
 
@@ -39,6 +57,15 @@ function SingleMovie( { movie }) {
 //     </li>
 //   ))}
 
+    // let providerInfo = null;
+    // if (movieProviderData.results.CA.flatrate) {
+    //     providerInfo = movieProviderData.results.CA.flatrate;
+    // }
+    // console.log(movieProviderData);
+    // console.log(movieProviderData.results.CA.flatrate);
+    // console.log(movieProviderData.results.CA.flatrate.provider_name);
+    
+    
 
   return (
     <>
@@ -62,7 +89,12 @@ function SingleMovie( { movie }) {
         {/*  MAKE THIS A MODAL */}
             <button>Play Trailer</button>
         </div>
-      </div>
+        <div className="single-movie-watch-providers"></div>
+        {/* {providerInfo !== false && 
+            <p>watch providers go here {providerInfo.provider_name}</p>
+        } */}
+            {/* <img /> */}
+        </div>
      
       <div className="single-movie-info">
         <article>
