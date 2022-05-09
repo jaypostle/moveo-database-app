@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 function NavMain() {
   return (
-    <div className="nav-main">
+    <nav className="nav-main">
         <ul>
             <li>
                 <NavLink to='/'>Home</NavLink>
@@ -15,7 +15,7 @@ function NavMain() {
                 <NavLink to='/favs'>Favourites</NavLink>
             </li>
         </ul>
-    </div>
+    </nav>
   )
 }
 
