@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 function NavSort() {
   return (
-    <div className="nav-sort">
+    <nav className="nav-sort">
         <ul>
             <li>
                 {/* essentially creating virtual links */}
@@ -18,7 +18,7 @@ function NavSort() {
                 <NavLink to='/sort/upcoming'>Upcoming</NavLink>
             </li>
         </ul>
-    </div>
+    </nav>
   )
 }
 export default NavSort
