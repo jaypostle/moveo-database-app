@@ -1,0 +1,85 @@
+@import './variables';
+@import './mixins';
+
+// old MW css
+// .movies-container {
+//     padding: em(12);
+
+//     @include mq($tablet){
+//         display: grid;
+//         grid-template-columns: 1fr 1fr;
+//         gap: em(14);
+//     }
+
+//     @include mq($desktop){
+//         padding: em(20);
+//         grid-template-columns: 1fr 1fr 1fr;
+//         gap: em(18);
+//     }
+
+// }
+
+
+.carousel-container {
+.movies-container {
+    margin: 1rem 0;
+    display: grid;
+    grid-auto-flow: column;
+    // takes a quarter of the total space if set to 25% but if you do an uneven divider of 100, it'll spill a bit
+    grid-auto-columns: 60%;
+    gap: 1rem;
+    overflow-x: auto;
+    // inline is left to right
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* Chrome/Safari/Webkit */
+        display: none!important;
+    }
+    
+    @include mq($tablet){
+        grid-auto-columns: 40%;
+
+    }
+
+    @include mq($desktop){
+        grid-auto-columns: 25%;
+
+    }
+    @include mq($desktopWide){
+        grid-auto-columns: 21%;
+    }
+        
+}
+
+    .carousel-arrow {
+        display: block;
+        position: fixed;
+        top: 50%
+    }
+    .previous-arrow {
+        left: 15%;
+    }
+
+    .next-arrow {
+        right: 15%;
+    }
+}
+
+
+// Carousel Snapping - inline single frame and group snaps
+.carousel-snaps-inline {
+    scroll-snap-type: inline mandatory;
+    // scroll-padding-inline: 0.5rem;
+    > * {
+        scroll-snap-align: start;
+    }
+}
+
+
+// .carousel-snaps-group {
+
+// }

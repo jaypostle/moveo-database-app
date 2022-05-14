@@ -1,20 +1,4 @@
 // Movies
-.movies-container {
-    padding: em(12);
-
-    @include mq($tablet){
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: em(14);
-    }
-
-    @include mq($desktop){
-        padding: em(20);
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: em(18);
-    }
-
-}
 
 .movie-card {
     background-color: rgba(black, 0.3);
