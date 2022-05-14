@@ -4,6 +4,7 @@ import { API_KEY } from '../globals/globals';
 
 import Movies from '../components/Movies';
 import NavSort from '../components/NavSort';
+import { carouselSlideRight, carouselSlideLeft } from '../scripts/carousel';
 
 
 
@@ -27,7 +28,7 @@ function PageHome( { sort }) {
       const data = await res.json();
 
       // creates an array of 12
-      const first12movies = data.results.splice(0, 12);
+      const first12movies = data.results.splice(0, 16);
      
       // test did data fetch and set
       // console.log(first12movies);
@@ -45,9 +46,12 @@ function PageHome( { sort }) {
   return (
     <section className="home-page">
         <h2>Home Page</h2>
-        <NavSort />
-
-        {movieData !== false && <Movies movieData={movieData} />}
+        <section className='carousel-popular-container carousel-container'>
+          <NavSort />
+          {movieData !== false && <Movies movieData={movieData} />}
+          <button className='carousel-arrow previous-arrow' id='previous-arrow-top-rated' onClick={carouselSlideLeft}>Previous Slide</button>
+          <button className='carousel-arrow next-arrow' id='next-arrow-top-rated' onClick={carouselSlideRight}>Next Slide</button>
+        </section>
 
     </section>
   )
