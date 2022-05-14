@@ -46,11 +46,13 @@ function PageHome( { sort }) {
   return (
     <section className="home-page">
         <h2>Home Page</h2>
-        <section className='carousel-popular-container carousel-container'>
           <NavSort />
+        <section className='carousel-popular-container carousel-container'>
+            <button className='carousel-arrow previous-arrow' id='previous-arrow-top-rated' onClick={carouselSlideLeft}>Previous Slide</button>
+            <button className='carousel-arrow next-arrow' id='next-arrow-top-rated' onClick={carouselSlideRight}>Next Slide</button>
+            
           {movieData !== false && <Movies movieData={movieData} />}
-          <button className='carousel-arrow previous-arrow' id='previous-arrow-top-rated' onClick={carouselSlideLeft}>Previous Slide</button>
-          <button className='carousel-arrow next-arrow' id='next-arrow-top-rated' onClick={carouselSlideRight}>Next Slide</button>
+         
         </section>
 
     </section>

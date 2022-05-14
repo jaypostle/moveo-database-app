@@ -21,6 +21,8 @@
 
 
 .carousel-container {
+    position: relative;
+
 .movies-container {
     margin: 1rem 0;
     display: grid;
@@ -56,16 +58,17 @@
 }
 
     .carousel-arrow {
-        display: block;
-        position: fixed;
-        top: 50%
+        // display: block;
+        position: absolute;
+        top: 50%;
+        // bottom: 40%;
     }
     .previous-arrow {
-        left: 15%;
+        left: 5%;
     }
 
     .next-arrow {
-        right: 15%;
+        right: 5%;
     }
 }
 
