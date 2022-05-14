@@ -17,6 +17,14 @@ function MovieCard( { movie }) {
 
   return (
     <div className="movie-card">
+      {/* styles to set background image in the card 
+      
+      https://www.youtube.com/watch?v=5DEq5cWNYt8&ab_channel=KevinPowell
+      */}
+      {/* style={{
+      backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.poster_path})`,
+      opacity: 0.9
+    }} */}
         <div className="movie-poster">
             {!movie.poster_path ? <img src={noPoster} alt='No poster available' /> : <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={movie.title}/>}
         </div>
