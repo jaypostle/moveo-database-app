@@ -1,15 +1,19 @@
+// .single-movie-container > :not(.single-movie-backdrop) {
+//     position: relative;
+//     z-index: 100;
+//     padding: 2rem;
+// }
+
 .single-movie-container {
-    position: relative;
 
-    width: 90%;
-    max-width: 100%;
-    margin: 0 2rem auto;
-    border: 5px solid white;
-    padding: 2rem;
+    img {
+        border-radius: 0.25rem;
+    }
 
-    .single-movie-poster, .single-movie-container {
+    > :not(.single-movie-backdrop) {
         position: relative;
-        z-index: 2;
+        z-index: 100;
+        padding: 2rem;
     }
 
     .single-movie-backdrop {
@@ -20,18 +24,64 @@
         left: 0;
         background-size: cover;
         opacity: 0.3;
-        // border: 10px dotted purple;
+        // z-index: 1;
     }
+
+    position: relative;
+
+    // width: 90%;
+    max-width: 100%;
+    margin: 0 auto;
+    // border: 5px solid white;
+    padding: 2rem;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+
+    
+    // HEADER
+    .single-movie-header {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+       
+
+        .single-movie-poster-buttons {
+            .single-movie-poster {
+                position: relative;
+                margin-right: 1rem;
+                // flex: 0 0 200px;
+
+                
+                
+            }
+        }
+
+        .single-movie-info {
+
+        }
+    }
+
+    //ACTORS CONTAINER
+    .actors-container{
+        article {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+        }
+    }
+
+    //TRAILERS CONTAINER
+    .trailer-container {
+      display: grid;
+      justify-content: center;
+    }
+    
+
+    
     p {
         line-height: 1.5;
     }
 
     @media (min-width: 600px) {
-        display: flex;
 
-        .single-movie-poster {
-            flex: 0 0 200px;
-            margin-right: 1rem;
-        }
     }
 }
