@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 
-function SingleMovie( { movie, provider }) {
+function SingleMovie( { movie, provider, images }) {
 
 
 
@@ -62,6 +62,14 @@ function SingleMovie( { movie, provider }) {
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} 
                 alt={movie.title}/>}
             </div>
+            <div className="single-movie-posters">
+                    {images.posters.slice(4, 6).map(poster =>
+                        <img 
+                        src={`https://image.tmdb.org/t/p/original/${poster.file_path}`} 
+                        alt={poster.title}/>
+                    )}
+            </div>
+
             <div className="movie-buttons">
             {/*  MAKE THIS A PROPER LINK */}
                 <Link to={{ pathname:`${movie.homepage}}`}} target="_blank"> Play Movie </Link>
@@ -127,13 +135,11 @@ function SingleMovie( { movie, provider }) {
                     </div>
                 )}
             </article>
+
+            {/* First 6 Backdrops */}
             <article>
-            {/* put this in */}
-
-
-
                 <div className="single-movie-media">
-                    {movie.images.posters.slice(0, 6).map(poster =>
+                    {images.backdrops.slice(0, 6).map(poster =>
                         <img 
                         src={`https://image.tmdb.org/t/p/original/${poster.file_path}`} 
                         alt={poster.title}/>

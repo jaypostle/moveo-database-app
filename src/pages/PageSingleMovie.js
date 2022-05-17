@@ -10,6 +10,8 @@ function PageSingleMovie() {
 
   const [movieData, setMovieData] = useState(false);
   const [movieProviderData, setMovieProviderData] = useState(false);
+  const [movieImages, setMovieImages] = useState(false);
+
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -47,17 +49,32 @@ function PageSingleMovie() {
       
     }, [])
 
-        // console.log(movieProviderData);
-    // console.log(movieProviderData.results.CA.flatrate);
-    // console.log(movieProviderData.results.CA.flatrate.provider_name);
+    // Get single image and backdrop data
+    useEffect(() => {
+
+      if(movieImages === false){
+        const fetchImages = async () => {
+          const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_KEY}
+          `);
+  
+          if (res.ok) {
+            const imageData = await res.json();
+            setMovieImages(imageData);
+            // console.log(imageData);
+          }
+        }
+        fetchImages();
+      }
+
+    }, [])
   
 
   return (
     <>
       <section className="single-movie-container">
         {/* don't load singlemovie if moviedata is false! */}
-  {(movieData !== false && movieProviderData !== false) && 
-    <SingleMovie movie={movieData} provider={movieProviderData} />}
+  {(movieData !== false && movieProviderData !== false && movieImages !== false) && 
+    <SingleMovie movie={movieData} provider={movieProviderData} images={movieImages} />}
       </section>
       <footer>
           <p>Movie API provided by TMDB. Movie Provider Information Provided by JustWatch</p>
