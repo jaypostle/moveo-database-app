@@ -1,6 +1,7 @@
 import noPoster from '../images/no-movie-poster.jpg';
 import { format } from "date-fns";
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 
 
@@ -34,10 +35,39 @@ function SingleMovie( { movie, provider, images }) {
 
   // Providers Filter
   // array of providers
-  const array = provider.results.CA.flatrate;
-  // makes an array if the provider_name includes crave, av, netflix, disney
-  const resultProviders = array.filter(network => network.provider_name.includes('Crave', 'Amazon Video', 'Netflix', 'Disney'));
+
+  const [resultProviders, setResultProviders] = useState(null);
+  // outcomes:
+  // 1. empty object
+  // 2. doesn't contain CA
+  // 3. doesn't contain flatrate or it's empty
+
+  console.log(Object.keys(provider.results).length);
+
+    useEffect(() => {
+    // 1. empty object
+    if (Object.keys(provider.results).length > 1) {
+            // 2. doesn't contain CA
+            
+        if (provider.results.hasOwnProperty('CA')) {
+                console.log('includes CA')
+                        // 3. doesn't contain flatrate or it's empty
+
+            if(provider.results.CA.hasOwnProperty('flatrate')) {
+                console.log('includes flatrate')
+
+                const array = provider.results.CA.flatrate;
+            //     // makes an array if the provider_name includes crave, av, netflix, disney
+                const arrayOfProviders = array.filter(network => network.provider_name.includes('Crave', 'Amazon Video', 'Netflix', 'Disney'));
+                console.log(arrayOfProviders);
+                setResultProviders(arrayOfProviders);
+            }
+        }
+    }
+    }, [])
+
   
+
 
     
     
@@ -65,8 +95,9 @@ function SingleMovie( { movie, provider, images }) {
             <div className="single-movie-posters">
                     {images.posters.slice(4, 6).map(poster =>
                         <img 
+                        key={images.file_path}
                         src={`https://image.tmdb.org/t/p/original/${poster.file_path}`} 
-                        alt={poster.title}/>
+                        alt={movie.title}/>
                     )}
             </div>
 
@@ -77,25 +108,22 @@ function SingleMovie( { movie, provider, images }) {
             {/*  MAKE THIS A MODAL */}
                 <button>Play Trailer</button>
             </div>
-            <div className="single-movie-watch-providers"></div>
-            
-                {resultProviders === null ? <img src={noPoster} alt='No poster available' /> :
+            <div className="single-movie-watch-providers">
+                <h4>Movie Provider(s):</h4>
+                {resultProviders === null ? <p>No provider source available. The film is currently not available in Canada on Amazon Prime, Disney, Netflix, or Crave.</p> :
                     
                     resultProviders.map(network => 
                     <img 
                         key={resultProviders.provider_name}
                         src={`https://image.tmdb.org/t/p/original/${network.logo_path}`} 
                         alt={resultProviders.provider_name}/>)
-                    }
-                    
-
-
+                }
 
                     {/* /// below works */}
-                <ul>
+                {/* <ul>
                 {resultProviders.map(network => <li key={network.provider_id}>{network.provider_name}</li>)}
-                </ul>
-                
+                </ul> */}
+            </div>       
                 
         </div>
         
