@@ -1,31 +1,14 @@
 import noPoster from '../images/no-movie-poster.jpg';
 import { format } from "date-fns";
-// import { useState } from 'react';
-// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { API_KEY } from '../globals/globals';
-import { useEffect, useState } from "react";
 
 
 
 
-function SingleMovie( { movie }) {
 
-    const [movieProviderData, setMovieProviderData] = useState(false);
+function SingleMovie( { movie, provider }) {
 
-    // get movie provider info
-//   useEffect(() => {
-//     const fetchMovieProvider = async () => {
-//       const res = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/watch/providers?api_key=${API_KEY}
-//       `);
 
-//       const providerData = await res.json();
-//       setMovieProviderData(providerData);
-//       console.log(providerData);
-//     }
-//     fetchMovieProvider();
-
-//   }, [])
 
 
 
@@ -45,40 +28,33 @@ function SingleMovie( { movie }) {
     type === "Trailer" && site === "YouTube"
     );
 
+// Filter Crew Members by Directors and Executive Producers only. Maybe make this a hard includes (currently a assistant photography director would be included in the array)
+    const crewArray = movie.credits.crew;
+    const crewDirectors = crewArray.filter(member => member.job.includes('Director', 'Executive Producer'));
+
   // Providers Filter
-//   const availableProviders = movie.results.CA.flatrate.filter(
-//     provider => provider.provider_name.includes('Crave', 'Amazon Video', 'Netflix', 'Disney')
+  // array of providers
+  const array = provider.results.CA.flatrate;
+  // makes an array if the provider_name includes crave, av, netflix, disney
+  const resultProviders = array.filter(network => network.provider_name.includes('Crave', 'Amazon Video', 'Netflix', 'Disney'));
+  
 
-//   )
-
-//   {names.filter(name => name.includes('J')).map(filteredName => (
-//     <li>
-//       {filteredName}
-//     </li>
-//   ))}
-
-    // let providerInfo = null;
-    // if (movieProviderData.results.CA.flatrate) {
-    //     providerInfo = movieProviderData.results.CA.flatrate;
-    // }
-    // console.log(movieProviderData);
-    // console.log(movieProviderData.results.CA.flatrate);
-    // console.log(movieProviderData.results.CA.flatrate.provider_name);
+    
     
     
 
   return (
     <>
 
-    {/* BACKDROP */}
-      <div className="single-movie-backdrop"
-          style={{
-              backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`
-          }}>
-          
-      </div>
       {/* SINGLE MOVIE HEADER */}
       <div className="single-movie-header">
+        {/* BACKDROP */}
+        <div className="single-movie-backdrop"
+            style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`
+            }}>
+            
+        </div>
         {/* POSTER */}
         <div className="single-movie-poster-buttons">
             <div className="single-movie-poster">
@@ -94,10 +70,25 @@ function SingleMovie( { movie }) {
                 <button>Play Trailer</button>
             </div>
             <div className="single-movie-watch-providers"></div>
-            {/* {providerInfo !== false && 
-                <p>watch providers go here {providerInfo.provider_name}</p>
-            } */}
-                {/* <img /> */}
+            
+                {resultProviders === null ? <img src={noPoster} alt='No poster available' /> :
+                    
+                    resultProviders.map(network => 
+                    <img 
+                        key={resultProviders.provider_name}
+                        src={`https://image.tmdb.org/t/p/original/${network.logo_path}`} 
+                        alt={resultProviders.provider_name}/>)
+                    }
+                    
+
+
+
+                    {/* /// below works */}
+                <ul>
+                {resultProviders.map(network => <li key={network.provider_id}>{network.provider_name}</li>)}
+                </ul>
+                
+                
         </div>
         
         {/* CONTENT */}
@@ -111,7 +102,7 @@ function SingleMovie( { movie }) {
                     <p>{movie.overview}</p>
                 {/* First 3 Production Crew Members */}
                     <div className="single-movie-production-crew">
-                        {movie.credits.crew.slice(0, 3).map(member => 
+                        {crewDirectors.slice(0, 3).map(member => 
                             <div key={member.id} className="single-movie-crew-member">
                                 <h4>{member.job}</h4>
                                 <p>{member.name}</p>

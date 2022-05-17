@@ -11,3 +11,6 @@ root.render(
   </React.StrictMode>
 );
 
+// ReactDOM.render(<AppRouter />, document.getElementById("root"));
+
+

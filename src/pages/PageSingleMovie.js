@@ -9,7 +9,7 @@ function PageSingleMovie() {
   const { id } = useParams();
 
   const [movieData, setMovieData] = useState(false);
-
+  const [movieProviderData, setMovieProviderData] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -18,19 +18,46 @@ function PageSingleMovie() {
 
       const data = await res.json();
       setMovieData(data);
-      console.log(data);
+      // console.log(data);
     }
     fetchMovie();
 
   }, [])
 
+
+  // get movie provider info
+    useEffect(() => {
+
+      if(movieProviderData === false){
+        const fetchMovieProvider = async () => {
+          const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${API_KEY}
+          `);
+  
+          if (res.ok) {
+            const providerData = await res.json();
+            setMovieProviderData(providerData);
+            // console.log(providerData);
+          }
+        }
+        fetchMovieProvider();
+  
+      }
+
+
+      
+    }, [])
+
+        // console.log(movieProviderData);
+    // console.log(movieProviderData.results.CA.flatrate);
+    // console.log(movieProviderData.results.CA.flatrate.provider_name);
   
 
   return (
     <>
       <section className="single-movie-container">
         {/* don't load singlemovie if moviedata is false! */}
-  {movieData !== false && <SingleMovie movie={movieData} />}
+  {(movieData !== false && movieProviderData !== false) && 
+    <SingleMovie movie={movieData} provider={movieProviderData} />}
       </section>
       <footer>
           <p>Movie API provided by TMDB. Movie Provider Information Provided by JustWatch</p>
