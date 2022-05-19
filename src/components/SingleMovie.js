@@ -58,7 +58,7 @@ function SingleMovie( { movie, provider, images }) {
 
                 const array = provider.results.CA.flatrate;
             //     // makes an array if the provider_name includes crave, av, netflix, disney
-                const arrayOfProviders = array.filter(network => network.provider_name.includes('Crave', 'Amazon Video', 'Netflix', 'Disney'));
+                const arrayOfProviders = array.filter(network => network.provider_name.includes('Crave', 'Amazon', 'Netflix', 'Disney'));
                 console.log(arrayOfProviders);
                 setResultProviders(arrayOfProviders);
             }
@@ -114,7 +114,7 @@ function SingleMovie( { movie, provider, images }) {
                     
                     resultProviders.map(network => 
                     <img 
-                        key={resultProviders.provider_name}
+                        key={resultProviders.provider_id}
                         src={`https://image.tmdb.org/t/p/original/${network.logo_path}`} 
                         alt={resultProviders.provider_name}/>)
                 }
