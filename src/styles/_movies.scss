@@ -1,3 +1,4 @@
+@import './variables';
 // Movies
 
 .movie-card {
@@ -6,6 +7,7 @@
     padding: em(10);
     margin-bottom: em(16);
     border-radius: em(8);
+    position: relative;
 
     img {
         width: 100%;
@@ -15,4 +17,33 @@
     @include mq($tablet){
         margin-bottom: 0;
     }
+    &:hover {
+        cursor: pointer;
+        // transform: scale(1.1);
+
+        .card-overlay {
+            opacity: 1;
+        }
+    }
+
+
+}
+
+
+.card-overlay {
+    position: absolute;
+    background: rgba($magenta-midnight-background, 0.9);
+    width: 100%;
+    transition: 0.5s ease;
+    opacity: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 1rem;
+    color: $textColor;
+    padding: 1rem;
+    text-align: left;
+    z-index: 200;
+    border-radius: em(8);
 }
