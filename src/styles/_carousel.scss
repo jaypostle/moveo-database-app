@@ -24,6 +24,7 @@
     position: relative;
 
 .movies-container {
+    padding: 2rem 0;
     margin: 1rem 0;
     display: grid;
     grid-auto-flow: column;
@@ -61,7 +62,15 @@
         // display: block;
         position: absolute;
         top: 50%;
+        z-index: 900;
         // bottom: 40%;
+        font-size: 3rem;
+        background-color: rgba(#000, 0.4);
+        border-radius: 3rem;
+
+        &:hover {
+            color: $success-retro-shine;
+        }
     }
     .previous-arrow {
         left: 5%;

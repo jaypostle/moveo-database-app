@@ -45,13 +45,34 @@ nav {
 }
 
 .nav-sort {
-    li {
-        background-color: $highlightColor;
+    padding: 1rem;
+    font-size: 1.5em;
+    font-weight: 600;
+
+    li:first-of-type {
+        background-color: rgba($highlightColor, 0);
+        font-family: 'Concert One', cursive, Georgia, 'Times New Roman', Times, serif;
+        display: block;
+        text-align: left;
+        line-height: 2.5em;
+        color: $success-retro-shine;
     }
-    a {
-        font-size: 0.9em;
+    li a {
+        color: $magenta-medium;
+        border-radius: 0.5rem;
+
         &.active {
-            background-color: darken($highlightColor, 8);
+            border: 2px solid $action-sand-dune;
+            color: $action-sand-dune;
         }
+
+        &:hover {
+            background-color: rgba($action-sand-dune, 0.9);
+            color: $magenta-midnight-background;
+        }
+    }
+    
+    a {
+        
     }
 }
