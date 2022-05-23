@@ -13,6 +13,9 @@ function NavSort() {
     <nav className="nav-sort">
         <ul>
             <li>
+                Discover:
+            </li>
+            <li>
                 {/* essentially creating virtual links */}
                 <NavLink to='/sort/popular' onClick={backToSort}>Popular</NavLink>
             </li>

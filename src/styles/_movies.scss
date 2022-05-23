@@ -1,18 +1,137 @@
+@import './variables';
 // Movies
 
+
+
+
+
 .movie-card {
-    background-color: rgba(black, 0.3);
-    border: em(3) solid $textColor;
-    padding: em(10);
+    background-color: $magenta-card-medium;
+    // border: em(3) solid $textColor;
+    // padding: em(10);
     margin-bottom: em(16);
     border-radius: em(8);
+    position: relative;
 
     img {
         width: 100%;
-        border-radius: em(4);
+        border-radius: em(8) em(8) 0 0;
     }
 
     @include mq($tablet){
         margin-bottom: 0;
+    }
+    &:hover {
+        cursor: pointer;
+        // transform: scale(1.1);
+
+        .card-overlay {
+            opacity: 1;
+        }
+    }
+
+
+}
+
+.movie-poster {
+    position: relative;
+
+}
+
+.movie-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    // margin-bottom: 4rem;
+    padding: 0.5rem;
+
+    h3, p {
+        margin-bottom: 0.25rem;
+    }
+}
+
+.card-action-icons {
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 5%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100%;
+    justify-content: space-between;
+    justify-items: left;
+    align-items: center;
+    align-content: center;
+
+    .card-favourite-heart {
+        // position: absolute;
+        z-index: 999;
+        // right: 2.5%;
+        background-color: $error-manga-red;
+        border-radius: 2rem;
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+        color: $textColor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    
+        // &:hover {
+        //     background-color: $textColor; 
+        //     color: $error-manga-red;
+        // }
+    }
+    
+    .card-more-info {
+        z-index: 999;
+        left: 2.5%;
+        display: flex;
+        justify-content: space-between;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+        color: $success-retro-shine;
+    
+        a {
+            padding: 0.5rem;
+        }
+        
+    }
+}
+
+
+
+.card-rating-percent {
+    position: absolute;
+    z-index: 902;
+    right: 6%;
+    top: -4.25%;
+    background-color: $action-sand-dune;
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: $magenta-midnight-background;
+
+}
+
+.card-overlay {
+    position: absolute;
+    background: rgba($magenta-midnight-background, 0.9);
+    width: 100%;
+    transition: 0.5s ease;
+    opacity: 0;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 1rem;
+    color: $textColor;
+    padding: 1rem;
+    text-align: left;
+    z-index: 899;
+    border-radius: em(8);
+
+    h4 {
+        margin: 0.25rem;
     }
 }

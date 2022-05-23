@@ -1,11 +1,14 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { API_KEY } from '../globals/globals';
+import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight} from 'react-icons/fa';
 
 import Movies from '../components/Movies';
 import NavSort from '../components/NavSort';
 import { carouselSlideRight, carouselSlideLeft } from '../scripts/carousel';
 
+import AddFavourites from "../components/AddFavourites";
+import RemoveFavourites from "../components/RemoveFavourites";
 
 
 function PageHome( { sort }) {
@@ -48,10 +51,13 @@ function PageHome( { sort }) {
         <h2>Home Page</h2>
           <NavSort />
         <section className='carousel-popular-container carousel-container'>
-            <button className='carousel-arrow previous-arrow' id='previous-arrow-top-rated' onClick={carouselSlideLeft}>Previous Slide</button>
-            <button className='carousel-arrow next-arrow' id='next-arrow-top-rated' onClick={carouselSlideRight}>Next Slide</button>
+            <FaRegArrowAltCircleLeft className='carousel-arrow previous-arrow' id='previous-arrow-top-rated' onClick={carouselSlideLeft}/>
+            <FaRegArrowAltCircleRight className='carousel-arrow next-arrow' id='next-arrow-top-rated' onClick={carouselSlideRight}/>
             
-          {movieData !== false && <Movies movieData={movieData} />}
+          {movieData !== false && <Movies 
+            movieData={movieData} 
+            favouriteComponent={AddFavourites}
+                              />}
          
         </section>
 
