@@ -91,22 +91,25 @@ function SingleMovie( { movie, provider, images }) {
                 {movie.poster_path === null ? <img src={noPoster} alt='No poster available' /> : <img 
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} 
                 alt={movie.title}/>}
+                <span className='card-rating-percent single-movie-rating-percent'>{ratingPercent}</span>
             </div>
-            <div className="single-movie-posters">
+            {/*  When I want to add a poster carousel, use this to get 3 posters */}
+            {/* <div className="single-movie-posters">
                     {images.posters.slice(4, 6).map(poster =>
                         <img 
                         key={images.file_path}
                         src={`https://image.tmdb.org/t/p/original/${poster.file_path}`} 
                         alt={movie.title}/>
                     )}
-            </div>
+            </div> */}
 
             <div className="movie-buttons">
             {/*  MAKE THIS A PROPER LINK */}
-                <Link to={{ pathname:`${movie.homepage}}`}} target="_blank"> Play Movie </Link>
+                <a href={movie.homepage} target="_blank" rel='noopener'>Go to Movie Website {'>'}</a>
 
             {/*  MAKE THIS A MODAL */}
-                <button>Play Trailer</button>
+                
+
             </div>
             <div className="single-movie-watch-providers">
                 <h4>Movie Provider(s):</h4>
@@ -131,9 +134,8 @@ function SingleMovie( { movie, provider, images }) {
         <div className="single-movie-info">
                 <article>
                     <h1>{movie.title}</h1>
-                    <p>{movie.genres.map(genreList => <span key={genreList.id}>{genreList.name} | </span>)} Run Time: {runtimeHours}h {runtimeMinutes}m</p>
-                    <p>Release Date: {formattedDate}</p>
-                    <span>{ratingPercent}</span>
+                    <p>{movie.genres.map(genreList => <span key={genreList.id}>{genreList.name} | </span>)} <span style={{fontWeight: 600}}>Run time:</span> {runtimeHours}h {runtimeMinutes}m</p>
+                    <p><span style={{fontWeight: 600}}>Release Date:</span> {formattedDate}</p>
                     <h3>Overview</h3>
                     <p>{movie.overview}</p>
                 {/* First 3 Production Crew Members */}
@@ -151,33 +153,39 @@ function SingleMovie( { movie, provider, images }) {
 
         {/* ACTORS CONTAINER */}
         <div className="actors-container">
+            <h2>Cast</h2>
             <article className="single-movie-cast">
+                
             {/* First 6 actors */}
                 {movie.credits.cast.slice(0, 6).map(actor => 
                     <div key={actor.id} className="single-movie-actor">
                         <img 
                             src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`} 
                             alt={movie.title}/>
-                        <h4>{actor.name}</h4>
-                        <p>{actor.character}</p>
+                        <div className='cast-names-titles'>
+                            <h4>{actor.name}</h4>
+                            <p>{actor.character}</p>
+                        </div>
                     </div>
                 )}
             </article>
 
-            {/* First 6 Backdrops */}
-            <article>
-                <div className="single-movie-media">
+            
+        </div>
+        {/* First 6 Backdrops */}
+        <div className="single-movie-media">
+                <h2>Backdrops</h2>
+                <article >
                     {images.backdrops.slice(0, 6).map(poster =>
                         <img 
                         src={`https://image.tmdb.org/t/p/original/${poster.file_path}`} 
                         alt={poster.title}/>
                     )}
-                </div>
-            </article>
+                </article>
         </div>
 
         {/* TRAILER CONTAINER */}
-        <div className="trailer-container">
+        <div className="trailer-container" id='movie-trailer'>
             <article>     
                 {/* Trailer */}    
                     {youtubeTrailer.key !== false && 

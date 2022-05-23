@@ -45,7 +45,7 @@ nav {
 }
 
 .nav-sort {
-    padding: 1rem;
+    padding: 1rem 0;
     font-size: 1.5em;
     font-weight: 600;
 
@@ -56,20 +56,22 @@ nav {
         text-align: left;
         line-height: 2.5em;
         color: $success-retro-shine;
+        letter-spacing: 2px;
+        text-transform: uppercase;
     }
     li a {
         color: $magenta-medium;
         border-radius: 0.5rem;
 
-        &.active {
+        &.active, &:hover {
             border: 2px solid $action-sand-dune;
             color: $action-sand-dune;
         }
 
-        &:hover {
-            background-color: rgba($action-sand-dune, 0.9);
-            color: $magenta-midnight-background;
-        }
+        // &:hover {
+        //     background-color: rgba($action-sand-dune, 0.9);
+        //     color: $magenta-midnight-background;
+        // }
     }
     
     a {

@@ -33,7 +33,7 @@
     max-width: 100%;
     margin: 0 auto;
     // border: 5px solid white;
-    padding: 2rem;
+    // padding: 2rem;
     // display: grid;
     // grid-template-columns: 1fr 1fr;
 
@@ -55,17 +55,49 @@
             }
         }
 
-        .single-movie-info {
+        .single-movie-info, .single-movie-poster-buttons {
+            z-index: 500;
+        }
 
+        .single-movie-watch-providers {
+            img {
+                border: 1px solid white;
+            }
         }
     }
 
     //ACTORS CONTAINER
-    .actors-container{
+    .actors-container {
         article {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 1rem;
+        }
+    }
+    .single-movie-media {
+        article {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+       
+    }
+    .single-movie-actor {
+        background-color: $light-blue-grey;
+        color: $magenta-midnight-background;
+        border-radius: 0.25rem;
+
+        img {
+            border-radius: 0.25rem 0.25rem 0 0;
+        }
+    }
+    .cast-names-titles {
+        padding: 0.5rem 1rem;
+        margin: 0;
+
+        h4 {
+            margin: 0.5rem 0;
         }
     }
 
