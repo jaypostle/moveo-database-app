@@ -3,8 +3,21 @@ import noPoster from '../images/no-movie-poster.jpg'
 import { format } from "date-fns";
 import AddFavourites from './AddFavourites';
 import { FaInfoCircle, FaRegHeart } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFav, deleteFav } from '../features/favouritesSlice';
 
 function MovieCard( { movie, favouriteComponent, }) {
+
+  //  mikes favourites
+  const favoriteItems = useSelector((state) => state.favorite.items);
+  const dispatch = useDispatch();
+
+  function inFav(id, arr){
+      return arr.some(item => item.id === id);
+  }
+
+  //  mikes favourites end
+
   const FavouriteComponent = favouriteComponent;
 
   // Convert Date
@@ -43,6 +56,12 @@ function MovieCard( { movie, favouriteComponent, }) {
               <div className="card-favourite-heart">
                 <FavouriteComponent movieLink={movie.id} />
               </div>  
+              <div className="game-add-to-cart">
+                        {inFav(movie.id, favoriteItems) === true ? 
+                            <button onClick={() => dispatch(deleteFav(movie))}>Remove from Favorites</button> : 
+                            <button onClick={() => dispatch(addFav(movie))}>Add to Favorites</button>
+                        }  
+              </div>
         </div>
     </div>
   )
