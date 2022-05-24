@@ -14,6 +14,7 @@ import RemoveFavourites from "../components/RemoveFavourites";
 function PageHome( { sort }) {
 
   const [movieData, setMovieData] = useState(false);
+  const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -46,6 +47,12 @@ function PageHome( { sort }) {
 
   }, [sort]);
 
+  // Add Favourites Function
+  const addFavouriteMovie = (movie) => {
+    const newFavouriteList = [...favourites, movie];
+    setFavourites(newFavouriteList);
+  }
+
   return (
     <section className="home-page">
         <Hero />
@@ -56,6 +63,21 @@ function PageHome( { sort }) {
             
           {movieData !== false && <Movies 
             movieData={movieData} 
+            handleFavouritesClick={addFavouriteMovie}
+            favouriteComponent={AddFavourites}
+                              />}
+         
+        </section>
+
+        <section className='carousel-popular-container carousel-container'>
+          <h2>Favourites</h2>
+            <FaRegArrowAltCircleLeft className='carousel-arrow previous-arrow' id='previous-arrow-top-rated' onClick={carouselSlideLeft}/>
+            <FaRegArrowAltCircleRight className='carousel-arrow next-arrow' id='next-arrow-top-rated' onClick={carouselSlideRight}/>
+            
+          {movieData !== false && <Movies 
+            movieData={movieData} 
+            movies={favourites}
+            handleFavouritesClick={addFavouriteMovie}
             favouriteComponent={AddFavourites}
                               />}
          

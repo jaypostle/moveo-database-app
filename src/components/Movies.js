@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard";
 
-function Movies( { movieData, favouriteComponent }) {
+function Movies( { movieData, favouriteComponent, handleFavouritesClick }) {
     
   return (
     <div className="movies-container carousel-snaps-inline carousel-popular">
@@ -9,6 +9,7 @@ function Movies( { movieData, favouriteComponent }) {
         key={movie.id} 
         movie={movie}
         favouriteComponent={favouriteComponent}
+        onClick={() => handleFavouritesClick(movie)}
          />)}
     </div>
   )
