@@ -16,7 +16,11 @@
         padding: 2rem;
     }
 
+    
     .single-movie-backdrop {
+        display: none;
+
+        @include mq($desktop){
         position: absolute;
         width: 100%;
         height: 100%;
@@ -26,6 +30,7 @@
         opacity: 0.3;
         // z-index: 1;
     }
+}
 
     position: relative;
 
@@ -41,8 +46,15 @@
     // HEADER
     .single-movie-header {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr auto;
+
+        @include mq($desktop){
+            grid-template-columns: 1fr 1fr;
+        }
        
+        @include mq($desktopWide){
+            grid-template-columns: 1fr 2fr;
+        }
 
         .single-movie-poster-buttons {
             .single-movie-poster {
@@ -70,16 +82,21 @@
     .actors-container {
         article {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
+            @include mq($desktop){
+                grid-template-columns: repeat(6, 1fr);
+            }
         }
     }
     .single-movie-media {
         article {
             display: grid;
             gap: 1rem;
+            grid-template-columns: repeat(2, 1fr);
+            @include mq($desktop){
             grid-template-columns: repeat(3, 1fr);
-
+            }
         }
        
     }
