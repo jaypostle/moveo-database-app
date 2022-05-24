@@ -6,6 +6,12 @@ import Hero from '../components/Hero';
 import Movies from '../components/Movies';
 import NavSort from '../components/NavSort';
 import { carouselSlideRight, carouselSlideLeft } from '../scripts/carousel';
+import isFav from '../utilities/isFav';
+import { useSelector } from 'react-redux';
+
+import Kitten from '../components/Kitten';
+import  kittensData  from '../data/kittens-data';
+
 
 import AddFavourites from "../components/AddFavourites";
 import RemoveFavourites from "../components/RemoveFavourites";
@@ -46,6 +52,8 @@ function PageHome( { sort }) {
 
   }, [sort]);
 
+  const favs = useSelector((state) => state.favs.items);
+
   return (
     <section className="home-page">
         <Hero />
@@ -56,10 +64,21 @@ function PageHome( { sort }) {
             
           {movieData !== false && <Movies 
             movieData={movieData} 
-            favouriteComponent={AddFavourites}
+            isFav={isFav(favs, null)}
                               />}
          
         </section>
+
+        <section>
+				<h2>Kitten Directory</h2>
+				<div className="kittens-grid">
+					{kittensData.map((singleKitten, i) => {
+						return <Kitten key={i} 
+									   kittenObj={singleKitten}
+									   isFav={isFav(favs, null, singleKitten.id)} />
+					})}
+				</div>
+			</section>
 
     </section>
   )

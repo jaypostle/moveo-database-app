@@ -3,8 +3,11 @@ import noPoster from '../images/no-movie-poster.jpg'
 import { format } from "date-fns";
 import AddFavourites from './AddFavourites';
 import { FaInfoCircle, FaRegHeart } from 'react-icons/fa';
+import FavButton from './FavButton';
+import { useDispatch } from 'react-redux';
+import { addFav, deleteFav } from '../features/favs/favsSlice';
 
-function MovieCard( { movie, favouriteComponent, }) {
+function MovieCard( { movie, favouriteComponent, isFav }) {
   const FavouriteComponent = favouriteComponent;
 
   // Convert Date
@@ -16,6 +19,15 @@ function MovieCard( { movie, favouriteComponent, }) {
   const ratingPercent = `${(rating / 10 * 100)}%`;
 
 
+  const dispatch = useDispatch();
+
+    function handleFavClick(addToFav, obj){
+        if(addToFav === true){
+            dispatch(addFav(obj));
+        }else{
+            dispatch(deleteFav(obj));
+        }   
+    }
   return (
     <div className="movie-card">
         <span className='card-rating-percent'>{ratingPercent}</span>
@@ -41,7 +53,12 @@ function MovieCard( { movie, favouriteComponent, }) {
                 <Link to={`/movie/${movie.id}`}>More Info {'>'}</Link>    
               </div>      
               <div className="card-favourite-heart">
-                <FavouriteComponent movieLink={movie.id} />
+                {/* <FavouriteComponent movieLink={movie.id} /> */}
+                {/* new code */}
+                {/* {isFav ? 
+                    <FavButton movieObj={movie} remove={true} handleFavClick={handleFavClick} /> : 
+                    <FavButton movieObj={movie} handleFavClick={handleFavClick} />
+                } */}
               </div>  
         </div>
     </div>
