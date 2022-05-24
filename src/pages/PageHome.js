@@ -75,8 +75,7 @@ function PageHome( { sort }) {
             <FaRegArrowAltCircleRight className='carousel-arrow next-arrow' id='next-arrow-top-rated' onClick={carouselSlideRight}/>
             
           {movieData !== false && <Movies 
-            movieData={movieData} 
-            movies={favourites}
+            movieData={favourites} 
             handleFavouritesClick={addFavouriteMovie}
             favouriteComponent={AddFavourites}
                               />}
