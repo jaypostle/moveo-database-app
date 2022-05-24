@@ -76,9 +76,7 @@ function PageSingleMovie() {
   {(movieData !== false && movieProviderData !== false && movieImages !== false) && 
     <SingleMovie movie={movieData} provider={movieProviderData} images={movieImages} />}
       </section>
-      <footer>
-          <p>Movie API provided by TMDB. Movie Provider Information Provided by JustWatch</p>
-      </footer>
+      
     </>
   )
 }

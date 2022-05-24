@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { API_KEY } from '../globals/globals';
 import { FaRegArrowAltCircleLeft, FaRegArrowAltCircleRight} from 'react-icons/fa';
-
+import Hero from '../components/Hero';
 import Movies from '../components/Movies';
 import NavSort from '../components/NavSort';
 import { carouselSlideRight, carouselSlideLeft } from '../scripts/carousel';
@@ -48,7 +48,7 @@ function PageHome( { sort }) {
 
   return (
     <section className="home-page">
-        <h2>Home Page</h2>
+        <Hero />
           <NavSort />
         <section className='carousel-popular-container carousel-container'>
             <FaRegArrowAltCircleLeft className='carousel-arrow previous-arrow' id='previous-arrow-top-rated' onClick={carouselSlideLeft}/>

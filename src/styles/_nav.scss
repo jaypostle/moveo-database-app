@@ -27,12 +27,15 @@ nav {
 
 .nav-main {
     li {
-        background-color: $featureColor;
+        border-radius: 0.25rem;
+        background-color: $magenta-medium;
+        font-weight: 500;
     }
 
     a {
         &.active {
-            background-color: darken($featureColor, 10);
+            background-color: darken($magenta-medium, 15);
+            border-radius: 0.25rem;
         }
     }
 
@@ -70,7 +73,7 @@ nav {
         letter-spacing: 2px;
         text-transform: uppercase;
 
-        @include mq($desktopWide){
+        @include mq($desktop){
                 text-align: left;
                 grid-column: span 1;
         }

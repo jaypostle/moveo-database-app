@@ -1,14 +1,18 @@
 // Wrapper
 .wrapper {
-    max-width: 90%;
     margin: 0 auto;
     
     border-radius: 10px;
     background-color: $magenta-midnight-background;
 
     @include mq($desktopWide){
-        margin: em(8) auto;
+        // margin: em(8) auto;
         // border: 3px solid $textColor;
+    }
+
+    main {
+        max-width: 90%;
+        margin: 0 auto;
     }
 
 }

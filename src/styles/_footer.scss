@@ -1,8 +1,60 @@
 // Footer
-footer {
-    border-top: 2px dotted rgba($textColor, 0.6);
-    padding: em(10);
+footer.footer-main {
+    // border-top: 2px dotted rgba($textColor, 0.6);
+    // margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 1rem;
+    margin: 1rem;
+
+    @include mq($desktop){
+        grid-template-columns: repeat( 3, 1fr);
+    }
+    
+    
+    img {
+        grid-column: span 2;
+        max-width: 10rem;
+
+        @include mq($desktop){
+            grid-column: span 3;
+
+        }
+    }
+
+    .footer-links {
+
+        ul {
+            display: block;
+            
+        }
+        a {
+            text-align: left;
+        }
+
+        li:first-of-type a {
+            color: $success-retro-shine;
+            font-weight: 600;
+        }
+    }
+    
+    .footer-company-links {
+        ul {
+        // grid-column: 4 / span 2;
+        }
+        li {
+            display: inline-flex;
+        }
+    }
+
     p {
         margin: 0;
     }
+
+    
+}
+footer:last-of-type {
+    width: 100%;
+    text-align: center;
 }
