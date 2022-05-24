@@ -11,10 +11,13 @@ import { NavLink } from 'react-router-dom';
 function NavSort() {
   return (
     <nav className="nav-sort">
-        <ul>
-            <li>
+        <li>
                 Discover:
-            </li>
+        </li>
+        <ul>
+            {/* <li>
+                Discover:
+            </li> */}
             <li>
                 {/* essentially creating virtual links */}
                 <NavLink to='/sort/popular' onClick={backToSort}>Popular</NavLink>

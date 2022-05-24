@@ -51,19 +51,22 @@ nav {
     padding: 1rem 0;
     font-size: 1.5em;
     font-weight: 600;
+    
 
     ul {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.25rem;
+        background-color: rgba($button-magenta, .2);
+        border-radius: 4rem;
     
             @include mq($desktop){
-                grid-template-columns: repeat( 5, 1fr);
+                grid-template-columns: repeat( 4, 1fr);
             }
         }
 
     li:first-of-type {
-        grid-column: span 2;
+        // grid-column: span 2;
         background-color: rgba($highlightColor, 0);
         font-family: 'Concert One', cursive, Georgia, 'Times New Roman', Times, serif;
         display: block;
@@ -80,13 +83,14 @@ nav {
     }
     li a {
         color: $magenta-medium;
-        border-radius: 0.5rem;
+        border-radius: 20rem;
         border: 2px solid rgba($action-sand-dune, 0) ;
 
 
         &.active, &:hover {
-            border: 2px solid $action-sand-dune;
+            border: 2px solid $magenta-light;
             color: $action-sand-dune;
+            // border-radius: 20rem;
         }
 
         // &:hover {
