@@ -61,6 +61,19 @@
             top: -3%;
         }
 
+        .card-action-icons {
+            grid-template-columns: 1fr;
+            bottom: unset;
+            // bottom: 0%;
+            top: 5%;
+            right: 4%;
+            justify-items: right;
+            .card-favourite-heart-single-movie {
+
+            }
+
+        }
+
         .single-movie-poster-buttons {
             .single-movie-poster {
                 position: relative;

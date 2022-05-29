@@ -7,12 +7,10 @@ import Movies from '../components/Movies';
 import NavSort from '../components/NavSort';
 import { carouselSlideRight, carouselSlideLeft } from '../scripts/carousel';
 
-import AddFavourites from "../components/AddFavourites";
-import RemoveFavourites from "../components/RemoveFavourites";
-
-
 function PageHome( { sort }) {
+  
 
+  // api call
   const [movieData, setMovieData] = useState(false);
 
   useEffect(() => {
@@ -56,7 +54,6 @@ function PageHome( { sort }) {
             
           {movieData !== false && <Movies 
             movieData={movieData} 
-            favouriteComponent={AddFavourites}
                               />}
          
         </section>
