@@ -3,8 +3,13 @@ import SingleMovie from '../components/SingleMovie';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { API_KEY } from '../globals/globals';
+import isFav from '../utilities/isFav';
+import { useSelector } from 'react-redux';
 
 function PageSingleMovie() {
+
+  // favs
+  const favs = useSelector((state) => state.favs.items);
 
   const { id } = useParams();
 
@@ -12,7 +17,7 @@ function PageSingleMovie() {
   const [movieProviderData, setMovieProviderData] = useState(false);
   const [movieImages, setMovieImages] = useState(false);
 
-
+  // single movie api call
   useEffect(() => {
     const fetchMovie = async () => {
       const res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US&append_to_response=videos,images,credits
@@ -74,7 +79,10 @@ function PageSingleMovie() {
       <section className="single-movie-container">
         {/* don't load singlemovie if moviedata is false! */}
   {(movieData !== false && movieProviderData !== false && movieImages !== false) && 
-    <SingleMovie movie={movieData} provider={movieProviderData} images={movieImages} />}
+    <SingleMovie movie={movieData} 
+                provider={movieProviderData} 
+                images={movieImages} 
+                isFav={isFav(favs, null, movieData.id)}/>}
       </section>
       
     </>

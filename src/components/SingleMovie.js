@@ -2,14 +2,25 @@ import noPoster from '../images/no-movie-poster.jpg';
 import { format } from "date-fns";
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { addFav, deleteFav } from '../features/favs/favsSlice';
+import FavHeartButton from '../components/FavHeartButton';
 
 
 
 
+function SingleMovie( { movie, provider, images, isFav }) {
 
-function SingleMovie( { movie, provider, images }) {
+    // add / remove favs from single movie page
+    const dispatch = useDispatch();
 
-
+    function handleFavClick(addToFav, obj){
+        if(addToFav === true){
+            dispatch(addFav(obj));
+        }else{
+            dispatch(deleteFav(obj));
+        }   
+    }
 
 
 
@@ -92,6 +103,14 @@ function SingleMovie( { movie, provider, images }) {
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} 
                 alt={movie.title}/>}
                 <span className='card-rating-percent single-movie-rating-percent'>{ratingPercent}</span>
+                <div className='card-action-icons'>
+                    <div className="card-favourite-heart card-favourite-heart-single-movie">
+                            {isFav ? 
+                                    <FavHeartButton movieObj={movie} remove={true} handleFavClick={handleFavClick} /> : 
+                                    <FavHeartButton movieObj={movie} handleFavClick={handleFavClick} />
+                                } 
+                    </div>
+                </div>  
             </div>
             {/*  When I want to add a poster carousel, use this to get 3 posters */}
             {/* <div className="single-movie-posters">
@@ -131,10 +150,10 @@ function SingleMovie( { movie, provider, images }) {
         </div>
         
         {/* CONTENT */}
-        <div className="single-movie-info">
+            <div className="single-movie-info">
                 <article>
                     <h1>{movie.title}</h1>
-                    <p>{movie.genres.map(genreList => <span key={genreList.id}>{genreList.name} | </span>)} <span style={{fontWeight: 600}}>Run time:</span> {runtimeHours}h {runtimeMinutes}m</p>
+                    <p><span style={{fontWeight: 600}}>Genre(s): </span>{movie.genres.map(genreList => <span key={genreList.id}>{genreList.name} | </span>)} <span style={{fontWeight: 600}}>Run time:</span> {runtimeHours}h {runtimeMinutes}m</p>
                     <p><span style={{fontWeight: 600}}>Release Date:</span> {formattedDate}</p>
                     <h3>Overview</h3>
                     <p>{movie.overview}</p>
