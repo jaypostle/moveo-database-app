@@ -1,0 +1,46 @@
+.favourites-page-section {
+    
+    .card-action-icons {
+        bottom: 0%;
+        padding-bottom: 1rem;
+    }
+
+    margin-top: 1rem;
+
+    @include mq($tablet){
+
+        margin-top: 4rem;
+    }
+
+
+    h1 {
+        margin-bottom: 2rem;
+
+        @include mq($tablet){
+
+            margin-bottom: 3rem;
+        }
+    }
+    .movies-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
+
+        @include mq($tablet){
+
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 2rem;
+        }
+
+        @include mq($desktop){
+
+            grid-template-columns: repeat(3, 1fr);
+        }
+        @include mq($desktopWide){
+
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+}
+

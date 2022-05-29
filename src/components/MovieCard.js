@@ -2,10 +2,7 @@ import { Link } from 'react-router-dom';
 import noPoster from '../images/no-movie-poster.jpg'
 import { format } from "date-fns";
 import { useDispatch } from 'react-redux';
-
-// delete this later after successful favourites set up
-import AddFavourites from './AddFavourites';
-import { FaInfoCircle, FaRegHeart } from 'react-icons/fa';
+import { FaInfoCircle } from 'react-icons/fa';
 
 
 // new imports from favourites tutorial
@@ -63,24 +60,12 @@ function MovieCard( { movie, isFav }) {
                 <Link to={`/movie/${movie.id}`}>More Info {'>'}</Link>    
               </div>      
               <div className="card-favourite-heart">
-                {/* <FavouriteComponent movieLink={movie.id} /> */}
-              </div>  
-              {/*  NEW FAVOURITES TRY */}
-              <div className='card-action-slice-favs'>
-                      {isFav ? 
+                {isFav ? 
                           <FavHeartButton movieObj={movie} remove={true} handleFavClick={handleFavClick} /> : 
                           <FavHeartButton movieObj={movie} handleFavClick={handleFavClick} />
                       } 
-              </div>
+              </div>  
         </div>
-
-        {/*  NEW FAVOURITES TRY */}
-        {/* <div className='card-action-icons'>
-                {isFav ? 
-                    <FavHeartButton movieObj={movie} remove={true} handleFavClick={handleFavClick} /> : 
-                    <FavHeartButton movieObj={movie} handleFavClick={handleFavClick} />
-                } 
-        </div> */}
     </div>
   )
 }

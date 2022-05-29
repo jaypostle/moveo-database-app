@@ -1,4 +1,6 @@
 // Fav Button
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+
 
 function FavButton({ movieObj, remove, handleFavClick }) {
 
@@ -13,8 +15,9 @@ function FavButton({ movieObj, remove, handleFavClick }) {
     return (
         <>
             {remove === false ? 
-            <button onClick={handleAddFav}>Add To Favs</button> : 
-            <button onClick={handleRemoveFav}>Remove From Favs</button>}
+            <button onClick={handleAddFav}><FaRegHeart /></button> : 
+            <button onClick={handleRemoveFav}><FaHeart /></button>}
+
         </>
     );
     
