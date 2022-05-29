@@ -12,7 +12,9 @@ import RemoveFavourites from "../components/RemoveFavourites";
 
 
 function PageHome( { sort }) {
+  
 
+  // api call
   const [movieData, setMovieData] = useState(false);
 
   useEffect(() => {
