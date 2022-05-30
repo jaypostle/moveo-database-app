@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 
 function AppRouter() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="moveo-database-app">
       <div className="wrapper">
         <Header />
          <main>
