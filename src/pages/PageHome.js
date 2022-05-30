@@ -9,6 +9,13 @@ import { carouselSlideRight, carouselSlideLeft } from '../scripts/carousel';
 
 function PageHome( { sort }) {
   
+// 1. use state sort
+// set a sort state varialbe then call it into my useEffect below
+// 2. remove the sort param that's getting passed in above ( {sort} )
+// 3. Change navlinks in nav sort .js to buttons and change their value to the right url
+// 4. handle button click , sort function and grab the value as a param
+
+
 
   // api call
   const [movieData, setMovieData] = useState(false);
