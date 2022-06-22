@@ -1,5 +1,6 @@
 {
   "name": "moveo-database-app",
+  "homepage": "/moveo-database-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
