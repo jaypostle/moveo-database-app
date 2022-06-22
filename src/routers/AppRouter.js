@@ -1,6 +1,7 @@
 import '../App.css';
 import '../styles/styles.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import PageHome from '../pages/PageHome';
 import PageAbout from '../pages/PageAbout';
@@ -9,7 +10,14 @@ import PageSingleMovie from '../pages/PageSingleMovie';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+
+
 function AppRouter() {
+
+  useEffect(() => {
+    document.title = "Moveo | Movie Database"
+  }, [])
+
   return (
     <BrowserRouter basename="moveo-database-app">
       <div className="wrapper">
